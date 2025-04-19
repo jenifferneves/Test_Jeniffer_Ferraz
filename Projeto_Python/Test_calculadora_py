@@ -1,0 +1,30 @@
+import pytest
+from calculadora import Calculadora
+
+calc = Calculadora()
+
+def test_somar():
+    assert calc.somar(2, 3) == 5
+
+def test_subtrair():
+    assert calc.subtrair(5, 2) == 3
+
+def test_multiplicar():
+    assert calc.multiplicar(4, 3) == 12
+
+def test_dividir():
+    assert calc.dividir(10, 2) == 5
+
+def test_divisao_por_zero():
+    with pytest.raises(ValueError):
+        calc.dividir(5, 0)
+
+def test_potencia():
+    assert calc.potencia(2, 3) == 8
+
+def test_raiz_quadrada():
+    assert round(calc.raiz_quadrada(25), 2) == 5.0
+
+def test_raiz_quadrada_negativa():
+    with pytest.raises(ValueError):
+        calc.raiz_quadrada(-9)

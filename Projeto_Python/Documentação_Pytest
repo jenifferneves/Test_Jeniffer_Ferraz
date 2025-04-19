@@ -1,0 +1,75 @@
+﻿
+🧪 Test Driven Development (TDD) com Pytest
+Introdução
+O desenvolvimento orientado a testes, conhecido pela sigla TDD (Test-Driven Development), é uma metodologia de desenvolvimento de software amplamente utilizada em ambientes onde a qualidade, a manutenibilidade e a confiabilidade do código são prioridades.
+Diferente da abordagem tradicional, onde os testes são escritos após a implementação do código, o TDD propõe que os testes sejam desenvolvidos antes do código funcional. Esse modelo estimula a escrita de código mais limpo, modular e fortemente ligado aos requisitos do sistema.
+Aliando essa metodologia ao uso do Pytest, um dos frameworks de testes mais populares da linguagem Python, é possível alcançar uma estrutura de testes automatizados sólida, simples de manter e fácil de escalar.
+
+O que é TDD?
+O TDD baseia-se em um ciclo de desenvolvimento contínuo que consiste em três etapas fundamentais:
+1. Red – Escrever um teste que falha
+Antes de qualquer implementação, o desenvolvedor escreve um teste que descreve um comportamento esperado. Como o código que satisfaz esse teste ainda não foi escrito, o teste deve falhar.
+2. Green – Escrever o código mínimo para passar o teste
+Na sequência, o código necessário é escrito para fazer o teste passar, focando exclusivamente em satisfazer o requisito descrito no teste.
+3. Refactor – Refatorar o código
+Após a passagem do teste, o código pode ser refatorado para melhorar sua estrutura, sem alterar seu comportamento. Os testes garantem que, mesmo após a refatoração, o comportamento da aplicação continua correto.
+Esse ciclo é conhecido como Red → Green → Refactor.
+
+Por que utilizar o TDD?
+As vantagens de utilizar TDD incluem:
+	• Maior confiança no código: Os testes garantem que as funcionalidades estão operando conforme esperado.
+	• Facilidade na refatoração: Com a cobertura de testes adequada, é possível modificar a base de código sem receio de quebrar funcionalidades.
+	• Foco nos requisitos: Os testes são escritos com base no comportamento esperado da aplicação, mantendo o foco no que realmente importa.
+	• Redução de bugs: A validação contínua evita que erros passem despercebidos para o ambiente de produção.
+
+Pytest: O que é e por que usar?
+O Pytest é um framework de testes para Python, reconhecido por sua simplicidade, legibilidade e poder. Ele permite escrever testes de maneira intuitiva e clara, sem a necessidade de estruturas complexas.
+Entre suas principais funcionalidades, destacam-se:
+	• Sintaxe simples e expressiva;
+	• Mensagens de erro detalhadas;
+	• Suporte a fixtures para configuração de ambiente de teste;
+	• Integração com ferramentas de cobertura de testes;
+	• Execução de testes em paralelo com plugins.
+
+Estrutura Sugerida para Projetos com TDD + Pytest
+Uma boa prática é separar os arquivos de código dos arquivos de teste. Abaixo, um exemplo de organização:
+
+/meu_projeto  /src    calculadora.py          # Código principal da aplicação  /tests    test_calculadora.py     # Arquivo contendo os testes  requirements.txt          # Lista de dependências
+
+Execução dos Testes com Pytest
+Após a criação dos testes e do código funcional, a execução pode ser feita com o seguinte comando no terminal:
+pytest
+Alguns comandos úteis:
+	• Executar com detalhes:pytest -v
+	
+	• Executar um único arquivo:pytest tests/test_calculadora.py
+
+
+📌 Considerações Finais
+A prática do TDD com Pytest foi aplicada de forma concreta neste repositório por meio da implementação de dois projetos práticos: uma calculadora matemática e um sistema básico de controle de estoque. Ambos os projetos foram desenvolvidos com foco na testabilidade, clareza do código e cobertura de cenários reais, reforçando os conceitos fundamentais de testes automatizados.
+
+✅ Projeto 1 – Calculadora com Pytest (Arquivos: Calculadora_py e Test_calculadora_py)
+O primeiro projeto consiste na criação de uma classe Calculadora, que realiza as quatro operações básicas da matemática (adição, subtração, multiplicação e divisão), além de duas operações extras: potência e raiz quadrada. O objetivo foi não só implementar a lógica dessas operações, mas também garantir sua confiabilidade por meio de testes automatizados com Pytest, incluindo casos de exceção.
+
+✅ Testes realizados com Pytest:
+	• Verificação de resultados esperados para cada operação;
+	• Teste de divisão por zero com exceção ValueError;
+	• Teste de raiz quadrada negativa com exceção ValueError;
+	• Uso de pytest.raises() para capturar erros esperados;
+	• Garantia de que os métodos funcionam corretamente em diferentes entradas.
+Esse projeto reforçou o uso da metodologia TDD, onde os testes são escritos antes da implementação da funcionalidade, e o código é desenvolvido para satisfazer esses testes com segurança.
+
+✅ Projeto 2 – Controle de Estoque - Integração de Classes (Arquivos: App_py e Test_integration_py)
+O segundo projeto foi desenvolvido com foco em testes de integração entre classes, trabalhando com dois componentes principais:
+	• Produto: representa um item com nome e quantidade.
+	• Estoque: gerencia um dicionário de produtos, permitindo adicionar e consultar quantidades.
+
+✅ Testes realizados:
+	• Verificação da soma correta das quantidades de um mesmo produto adicionado mais de uma vez;
+	• Garantia de que o método verificar_quantidade retorna o valor correto, mesmo com produtos inexistentes;
+	• Uso de boas práticas como isolamento de testes e criação de objetos dedicados para cada cenário.
+Esse projeto complementa o aprendizado, demonstrando como o Pytest pode ser usado não apenas para funções isoladas, mas também para testes de integração entre classes, simulando interações reais entre componentes de um sistema.
+
+🔄 Conclusão Geral
+Esses dois projetos mostraram na prática como o Pytest, aliado ao TDD, pode ser usado para construir sistemas confiáveis desde o início do desenvolvimento. Além da cobertura de funcionalidades básicas e excepcionais, também foi possível exercitar boas práticas de organização de código, nomeação de métodos e estrutura modular — elementos essenciais para a escalabilidade e manutenção de sistemas reais.
+Além disso, essa abordagem permite que os testes sirvam como documentação viva do código, tornando mais fácil o entendimento do comportamento esperado do sistema por outros desenvolvedores ou futuras versões da aplicação.

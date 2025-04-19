@@ -1,0 +1,48 @@
+﻿
+📊 Resumo dos Testes Exploratório - API ServeRest
+
+🧠 O que foi aprendido de novo sobre a aplicação?
+Durante a execução dos testes exploratórios nos endpoints /usuarios, /login e /produtos, alguns pontos importantes foram observados:
+	1. Endpoint /usuarios:
+		○ Criação de Usuários:
+			§ A criação de um novo usuário retorna um status 201 Created quando os dados estão corretos.
+			§ Descobriu-se que a API permite a criação de usuários duplicados (mesmo e-mail), mas o retorno não é claro — uma possível melhoria seria retornar um erro mais específico.
+		○ Validação de Campos:
+			§ Alguns campos como email e senha não são validados corretamente em termos de formato. Por exemplo, um e-mail inválido (como usuario@ ou usuario.com) é aceito.
+			§ Caso um campo obrigatório seja deixado vazio, a API não retorna um erro específico para cada campo (algo mais genérico).
+	2. Endpoint /login:
+		○ O login não foi completamente consistente em algumas condições de erro, como:
+			§ Quando os dados de login estavam incorretos, o retorno não fornecia uma mensagem clara (apenas status 400 ou 401).
+			§ A resposta de erro era bastante genérica, e isso dificultava a identificação do motivo exato do erro (por exemplo, se a senha estava errada ou se o e-mail não existia).
+		○ Autenticação via Token:
+			§ Após um login bem-sucedido, o token retornado é utilizado para autenticação subsequente.
+			§ Foi possível explorar diferentes cenários com tokens expirados e tokens inválidos, verificando que a API retorna erro 401 de forma consistente.
+	3. Endpoint /produtos:
+		○ Cadastro de Produtos:
+			§ O cadastro de novos produtos é bem-sucedido quando os dados estão corretos.
+			§ Caso falte algum campo obrigatório (como nome ou preço), a API retorna 400 Bad Request de forma clara, mas com uma mensagem genérica.
+		○ Validação de Preço:
+			§ Não foi identificado um mecanismo de validação rigorosa de preço (exemplo: permitir valores negativos ou preços com muitas casas decimais).
+
+📝 Novos Casos de Teste Gerados:
+A partir da execução de testes exploratórios, os seguintes novos casos de teste foram sugeridos:
+	1. /usuarios - Testes de Validação de Campos:
+		○ Caso de Teste: Enviar um e-mail em formato inválido (ex: usuario.com ou usuario@).
+		○ Resultado Esperado: A API deve retornar um erro específico para formato inválido de e-mail (status 400).
+	2. /usuarios - Teste de Usuário Duplicado:
+		○ Caso de Teste: Criar dois usuários com o mesmo e-mail.
+		○ Resultado Esperado: A API deve retornar um erro 402 com a mensagem Usuário já existe ou algo similar.
+	3. /login - Teste de Resposta com Senha Errada:
+		○ Caso de Teste: Tentar logar com a senha incorreta.
+		○ Resultado Esperado: A API deve retornar status 401 Unauthorized com uma mensagem específica como "Senha incorreta".
+	4. /login - Teste com Token Expirado:
+		○ Caso de Teste: Tentar acessar um endpoint protegido com um token expirado.
+		○ Resultado Esperado: A API deve retornar status 401 com a mensagem "Token expirado".
+	5. /produtos - Teste de Preço Negativo:
+		○ Caso de Teste: Criar um produto com preço negativo.
+		○ Resultado Esperado: A API deve rejeitar o pedido com um erro claro, como status 400 e a mensagem "Preço inválido".
+
+📋 Conclusões Finais:
+	• Testes Exploratório permitiram identificar lacunas importantes na validação de dados e nas respostas de erro da API, além de permitir a criação de novos casos de teste para cobrir cenários não contemplados inicialmente.
+	• Foi possível também verificar falhas de clareza nas mensagens de erro e na validação de campos (especialmente em relação aos dados inseridos pelo usuário).
+	• A experiência do usuário pode ser otimizada com respostas mais claras em casos de erro e uma validação mais rigorosa de dados (como e-mail, senha e preços de produtos).
