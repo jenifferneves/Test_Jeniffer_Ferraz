@@ -1,0 +1,84 @@
+﻿
+📄 Documentação de Testes - Rota /carrinhos | ServeRest API
+🔗 Base URL: https://compassuol.serverest.dev
+🧪 Rota-alvo: /carrinhos
+
+🧠 1. Análise da Rota
+A rota /carrinhos permite o gerenciamento de carrinhos de compras e está relacionada com a adição de produtos para posterior finalização da compra. Endpoints disponíveis:
+
+Método	Endpoint	Descrição
+GET	/carrinhos	Lista todos os carrinhos
+POST	/carrinhos	Cria um novo carrinho
+DELETE	/carrinhos/cancelar-compra	Cancela a compra do carrinho
+DELETE	/carrinhos/concluir-compra	Finaliza a compra do carrinho
+GET	/carrinhos/:id	Retorna carrinho por ID (pouco documentado)
+
+🧭 2. Planejamento de Testes
+
+Objetivos:
+	• Validar comportamento esperado da rota /carrinhos
+	• Garantir que os fluxos de criação, visualização, cancelamento e conclusão estejam funcionando
+	• Verificar regras de negócio (como só permitir um carrinho por usuário ativo)
+	
+Tipos de Testes:
+	• Testes Manuais (Funcionais)
+	• Testes Automatizados (via scripts em Postman/pytest)
+	• Testes de API (verificação de status, headers, body)
+
+🧪 3. Casos de Teste Manuais
+
+Cenário	Requisição	Esperado
+Criar um carrinho com produtos válidos	POST /carrinhos	201 Created, carrinho criado
+Criar carrinho com usuário que já tem um ativo	POST /carrinhos	400 Bad Request com msg “Já existe um carrinho em andamento”
+Listar todos os carrinhos	GET /carrinhos	200 OK, lista de carrinhos
+Cancelar compra com carrinho existente	DELETE /carrinhos/cancelar-compra	200 OK, mensagem de cancelamento
+Concluir compra com sucesso	DELETE /carrinhos/concluir-compra	200 OK, mensagem de sucesso
+Tentar concluir compra sem carrinho	DELETE /carrinhos/concluir-compra	400 Bad Request
+
+🤖 4. Scripts de Testes Automatizados
+
+Ferramentas:
+	• Postman (coleção com ambiente)
+
+🧪 Requisição: POST https://compassuol.serverest.dev/carrinhos
+Body (JSON):
+
+{  "produtos": [    {      "idProduto": "1234",      "quantidade": 1    }  ]}
+
+(não esqueça de colocar um token no header Authorization, se necessário)
+
+🧠 Aba Tests no Postman:
+
+pm.test("Status code é 201", function () {    pm.response.to.have.status(201);});
+pm.test("Mensagem de sucesso está presente", function () {    var jsonData = pm.response.json();    pm.expect(jsonData.message).to.eql("Cadastro realizado com sucesso");});
+
+✅ Resultado:
+Se a resposta da API for correta, o Postman vai marcar os testes como "PASS".
+
+
+🐞 5. Levantamento de Issues
+
+Descrição	Status
+Ao tentar criar dois carrinhos com o mesmo usuário, erro genérico (sem msg clara)	Aberto
+Cancelar carrinho sem estar autenticado retorna 500 em vez de 401	Aberto
+GET /carrinhos/:id não retorna o carrinho corretamente	Investigando
+
+✅ 6. Critérios de Aceitação
+	• O carrinho deve conter ao menos um produto com quantidade >= 1
+	• O usuário só pode ter um carrinho ativo
+	• Concluir a compra deve esvaziar o carrinho
+	• Cancelar a compra remove o carrinho
+	• Deve ser possível listar todos os carrinhos criados
+
+📌 7. DoR (Definition of Ready)
+	• A documentação da API está disponível
+	• Ambiente de testes funcional
+	• Usuário e produtos previamente cadastrados para os testes
+	• Ambiente de automação (Postman/Cypress) configurado
+
+✅ 8. DoD (Definition of Done)
+	• Todos os testes manuais foram executados com sucesso
+	• Scripts automatizados implementados e versionados
+	• Issues encontradas registradas no board
+	• Documentação atualizada no repositório
+	• Critérios de aceitação validados
