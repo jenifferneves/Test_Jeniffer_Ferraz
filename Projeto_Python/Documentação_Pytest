@@ -34,7 +34,7 @@ Entre suas principais funcionalidades, destacam-se:
 Estrutura Sugerida para Projetos com TDD + Pytest
 Uma boa prática é separar os arquivos de código dos arquivos de teste. Abaixo, um exemplo de organização:
 
-/meu_projeto  /src    calculadora.py          # Código principal da aplicação  /tests    test_calculadora.py     # Arquivo contendo os testes  requirements.txt          # Lista de dependências
+/meu_projeto  /src    calculadora.py          # Código principal da Aplicação  /tests    test_calculadora.py     # Arquivo contendo os testes  requirements.txt          # Lista de dependências
 
 Execução dos Testes com Pytest
 Após a criação dos testes e do código funcional, a execução pode ser feita com o seguinte comando no terminal:
