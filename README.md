@@ -31,14 +31,21 @@ Ramos
 💻 Ferramentas Utilizadas
 
 • Linguagem: Python
+
 • Ferramenta de Automação de Testes: Pytest (para testes automatizados)
+
 • Ferramenta de Teste de API: Postman, Cypress (para automação de testes)
+
 • Editor de Código: Visual Studio Code
+
 • Controle de Versão: Git e GitHub
+
 • Outras Ferramentas:
-	· ChatGPT: Suporte para estruturação do README e planejamento de testes.
-	· OneNote: Para anotações e registros de progresso.
-	· Jira: Para planejamento e relatórios de desenvolvimento.
+· ChatGPT: Suporte para estruturação do README e planejamento de testes.
+
+· OneNote: Para anotações e registros de progresso.
+
+· Jira: Para planejamento e relatórios de desenvolvimento.
 
 🚀 Progresso e Métodos de Estudo
 
@@ -47,7 +54,9 @@ Testes Exploratórios
 Durante a execução dos testes exploratórios, foram analisados os seguintes endpoints da API ServeRest:
 
 • Rota /usuarios: Identificação de falhas de validação e análise dos tipos de dados esperados. Foram encontrados problemas de inconsistência no formato de resposta.
+
 • Rota /produtos: Testes focados em produtos com variações no formato de entrada e resposta. Identificação de falhas em filtros de busca.
+
 • Rota /carrinhos: A rota foi estudada conforme o planejamento da Sprint, com testes de integração para garantir a criação correta de carrinhos, adição de produtos e validações de resposta.
 
 Testes Automatizados (Pytest, Postman)
@@ -55,6 +64,7 @@ Testes Automatizados (Pytest, Postman)
 A automação foi aplicada em diferentes níveis para os seguintes fluxos:
 
 • Pytest: Testes foram escritos para a classe Calculadora (Python) com as operações básicas (adição, subtração, multiplicação, divisão, exponenciação e raiz quadrada).
+
 • Postman: Coleções de testes de API para validar endpoints como POST /carrinhos com diferentes combinações de dados.
 
 📄 Planejamento de Testes
@@ -64,21 +74,26 @@ Rota Carrinho (/carrinhos)
 O planejamento de testes para a rota /carrinhos incluiu:
 
 • Análise da funcionalidade: Garantir que a criação de carrinhos estivesse sendo feita corretamente com a validação de produtos.
+
 • Execução de Testes Manuais: Foram feitos testes manuais com dados válidos e inválidos para a criação de carrinhos.
+
 • Criação de Scripts de Testes Automatizados: Scripts em Postman  para validar os casos de uso da rota /carrinhos.
+
 • Definição de DoR (Definition of Ready): A rota estava pronta para teste quando os requisitos da API estavam claros e documentados.
+
 • Definição de DoD (Definition of Done): A rota estava considerada concluída quando os testes automatizados passaram em todas as condições e a documentação foi atualizada.
 	
 Outras Rotas a Serem Testadas
 
 • Rota /usuarios: Testes exploratórios e automáticos para validar a criação, atualização e exclusão de usuários.
+
 • Rota /produtos: Foco em testes de integridade dos produtos e validação de filtros de busca.
 
 🛠 Instalação de Ferramentas e Bibliotecas
 
 Python
 
-1. Acesse o site oficial: https://www.python.org/.
+1. Acesse o site oficial: https://www.python.org/
 2. Baixe e instale a versão mais recente do Python.
 3. No terminal, instale o Pytest:
 pip install pytest
